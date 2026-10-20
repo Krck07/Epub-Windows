@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Epub Reader</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================ LIBRARY ============================ -->
+  <div id="library-view">
+    <header class="topbar">
+      <h1>📖 Epub Reader</h1>
+      <div class="actions">
+        <button id="btn-add" class="primary">＋ Add book</button>
+        <button id="btn-theme" class="icon" title="Toggle dark / light">◐</button>
+      </div>
+    </header>
+    <div id="book-list"></div>
+    <div id="empty-state">
+      <p class="big">No books yet</p>
+      <p>Add an EPUB file to get started.</p>
+    </div>
+    <div id="library-toast" class="toast hidden"></div>
+  </div>
+
+  <!-- ============================ READER ============================ -->
+  <div id="reader-view" class="hidden">
+    <header id="reader-top">
+      <button id="btn-back" title="Back to library (Esc)">‹ Library</button>
+      <div id="chapter-title" title=""></div>
+      <select id="chapter-select" title="Chapter selector"></select>
+      <button id="btn-mode" title="Toggle paged / scroll mode">⇵ Scroll</button>
+      <button id="btn-settings" class="icon" title="Settings (,)">⚙</button>
+    </header>
+
+    <main id="reader-main">
+      <div id="pages"></div>
+    </main>
+
+    <footer id="reader-bottom">
+      <button id="btn-prev" title="Previous chapter (←)">‹</button>
+      <div class="progress-wrap" title="Reading progress">
+        <div id="progress-bar"></div>
+        <span id="progress-pct">0%</span>
+      </div>
+      <button id="btn-next" title="Next chapter (→)">›</button>
+    </footer>
+
+    <!-- focus mode: only a thin progress bar + percentage remain -->
+    <div id="focus-bar">
+      <div id="focus-progress"></div>
+      <span id="focus-pct"></span>
+    </div>
+
+    <!-- settings panel -->
+    <div id="settings-panel" class="hidden">
+      <h2>Settings</h2>
+      <label>Theme
+        <select id="set-theme">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+        </select>
+      </label>
+      <label>Text size <span id="val-fontsize" class="val"></span>
+        <input type="range" id="set-fontsize" min="12" max="42" step="1">
+      </label>
+      <label>Paragraph spacing <span id="val-spacing" class="val"></span>
+        <input type="range" id="set-spacing" min="0.2" max="3" step="0.1">
+      </label>
+      <label>Columns
+        <select id="set-columns">
+          <option value="auto">Auto (wide → 2)</option>
+          <option value="1">1</option>
+          <option value="2">2 (bookish)</option>
+        </select>
+      </label>
+      <label>Reading mode
+        <select id="set-mode">
+          <option value="paged">Paged (chapter at a time)</option>
+          <option value="scroll">Scroll (continuous)</option>
+        </select>
+      </label>
+      <div class="settings-hint">Tap left / right edge to change chapter · tap center for focus mode</div>
+      <button id="btn-settings-close" class="primary">Done</button>
+    </div>
+  </div>
+
+  <div id="global-toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+</body>
+</html>
